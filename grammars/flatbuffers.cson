@@ -195,7 +195,16 @@
           'include': '#typename'
         },
         {
-          'include': '#scalar'
+          'begin':  '='
+          'end':    '(?=;|\\()'
+          'patterns': [
+            {
+              'include': '#scalar'
+            },
+            {
+              'include': '#name'
+            }
+          ]
         },
         {
           'include': '#metadata'
