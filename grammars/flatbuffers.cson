@@ -7,7 +7,7 @@
     'include' : '#comments'
   },
   {
-    'include' : '#scalar'
+    'include' : '#value'
   },
   {
     'include' : '#namespace-decl'
@@ -34,7 +34,7 @@
     'include' : '#root_type-decl'
   },
   {
-    'match': '\\b(attribute|include)\\b'
+    'match': '\\b(attribute|include|file_identifier|file_extension)\\b'
     'name':  'keyword.control.flatbuffers'
   }
 ]
@@ -104,6 +104,34 @@
         }
       ]
     }
+  'object':
+    {
+      'begin':  '{'
+      'end':    '(?<=})'
+      'patterns': [
+        {
+          'include': '#comments'
+        },
+        {
+          'include': '#name'
+        },
+        {
+          'begin':  ':'
+          'end':    ',|}'
+          'patterns': [
+              {
+                'include': '#comments'
+              },
+              {
+                'include': '#value'
+              },
+              {
+                'include': '#name'
+              }
+          ]
+        }
+      ]
+    }
   'typename':
     {
       'patterns': [
@@ -153,6 +181,17 @@
         }
       ]
     }
+  'value':
+    {
+      'patterns': [
+        {
+          'include': '#scalar'
+        },
+        {
+          'include': '#object'
+        }
+      ]
+    }
   'struct_field_end':
     {
       'begin':  '\\b(:)\\b'
@@ -199,7 +238,7 @@
           'end':    '(?=;|\\()'
           'patterns': [
             {
-              'include': '#scalar'
+              'include': '#value'
             },
             {
               'include': '#name'
