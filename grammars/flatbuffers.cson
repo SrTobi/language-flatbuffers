@@ -16,6 +16,9 @@
     'include' : '#attribute-decl'
   },
   {
+    'include' : '#include-decl'
+  },
+  {
     'include' : '#enum-decl'
   },
   {
@@ -230,6 +233,22 @@
   'attribute-decl':
     {
       'begin':  '\\b(attribute)\\b'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.control.flatbuffers'
+      'end':    ';'
+      'patterns': [
+        {
+          'include': '#comments'
+        },
+        {
+          'include': '#string'
+        }
+      ]
+    }
+  'include-decl':
+    {
+      'begin':  '\\b(include)\\b'
       'beginCaptures':
         '1':
           'name': 'keyword.control.flatbuffers'
