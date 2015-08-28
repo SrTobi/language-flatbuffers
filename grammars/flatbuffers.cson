@@ -23,6 +23,9 @@
   },
   {
     'include' : '#struct-decl'
+  },
+  {
+    'include' : '#table-decl'
   }
 ]
 'repository':
@@ -141,6 +144,28 @@
                 'match': '(\\\\\\\\)|\\\\"'
               }
             ]
+        },
+        {
+          'include': '#metadata'
+        }
+      ]
+    }
+  'table_field_end':
+    {
+      'begin':  '\\b(:)\\b'
+      'end':    ';'
+      'patterns': [
+        {
+          'include': '#comments'
+        },
+        {
+          'include': '#typename'
+        },
+        {
+          'include': '#string'
+        },
+        {
+          'include': '#numeric'
         },
         {
           'include': '#metadata'
@@ -292,6 +317,40 @@
               }
               {
                 'include': '#struct_field_end'
+              }
+          ]
+        }
+      ]
+    }
+  'table-decl':
+    {
+      'begin':  '\\b(table)\\b'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.control.flatbuffers'
+      'end':    '(?<=})'
+      'patterns': [
+        {
+          'include': '#comments'
+        },
+        {
+          'include': '#typename'
+        },
+        {
+          'include': '#metadata'
+        },
+        {
+          'begin':  '{'
+          'end':    '}'
+          'patterns': [
+              {
+                'include': '#comments'
+              },
+              {
+                'include': '#name'
+              }
+              {
+                'include': '#table_field_end'
               }
           ]
         }
