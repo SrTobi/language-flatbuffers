@@ -75,8 +75,18 @@
     }
   'typename':
     {
-      'match':  '\\b(?!(enum|namespace|union|struct|table|include|bool|byte|ubyte|short|ushort|int|uint|float|long|ulong|double|string))([_a-zA-Z]\\w*)\\b'
-      'name':   'entity.name.type.flatbuffers'
+      'patterns': [
+        {
+          'match':  '\\b(?!(enum|namespace|union|struct|table|include|bool|byte|ubyte|short|ushort|int|uint|float|long|ulong|double|string))([_a-zA-Z]\\w*)\\s*(?=\\.)'
+          'captures':
+            '2':
+              'name': 'entity.name.section.flatbuffers'
+        },
+        {
+          'match':  '\\b(?!(enum|namespace|union|struct|table|include|bool|byte|ubyte|short|ushort|int|uint|float|long|ulong|double|string))([_a-zA-Z]\\w*)'
+          'name':   'entity.name.type.flatbuffers'
+        }
+      ]
     }
   'name':
     {
