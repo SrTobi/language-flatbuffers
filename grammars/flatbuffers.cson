@@ -1,0 +1,67 @@
+'fileTypes': [
+  'fbs'
+]
+'name': 'Flatbuffers schema'
+'patterns': [
+  {
+    'include' : '#line-comment'
+  },
+  {
+    'include' : '#block-comment'
+  },
+  {
+    'include' : '#base-keywords'
+  },
+  {
+    'include' : '#namespace-decl'
+  }
+]
+'repository':
+  'line-comment':
+    {
+      'begin': '(?=//)'
+      'end': '\\n'
+      'name': 'comment.line.double-slash.flatbuffers'
+      # documentation
+      'patterns': [
+        {
+          'begin': '(?<!/)(?=///[^/])'
+          'end': '(?=\\n)'
+          'name': 'meta.documentation.flatbuffers'
+        }
+      ]
+    }
+  'block-comment':
+    {
+      'begin': '(?=/\\*)'
+      'end': '(?<!/)\\*/'
+      'name': 'comment.block.flatbuffers'
+    }
+  'base-keywords':
+    {
+      'match': '\\b(namespace|attribute|enum|struct|table|root_type|union)\\b'
+      'name':  'keyword.control.flatbuffers'
+    }
+  'namespace-decl':
+    {
+      'begin':  '(?<=namespace)'
+      'end':    '(?=;)'
+      'patterns': [
+        {
+          'match':  '\\s+([_a-zA-Z]\\w*)(\\s*\\.\\s*([_a-zA-Z]\\w*))*\\s*'
+          'captures':
+            '0':
+              'patterns': [
+                {
+                  'match':  '[_a-zA-Z]\\w*'
+                  'name':   'entity.name.type.flatbuffers'
+                }
+              ]
+        },
+        {
+          'match':  '[^;]+'
+          'name':   'invalid.illegal.flatbuffers'
+        }
+      ]
+    }
+'scopeName': 'source.flatbuffers'
