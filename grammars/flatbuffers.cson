@@ -7,7 +7,7 @@
     'include' : '#comments'
   },
   {
-    'include' : '#string'
+    'include' : '#scalar'
   },
   {
     'include' : '#namespace-decl'
