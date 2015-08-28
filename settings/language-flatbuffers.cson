@@ -1,0 +1,5 @@
+'.source.flatbuffers':
+  'editor':
+    'commentStart': '// '
+    'increaseIndentPattern': '(?:\\{)$'
+    'decreaseIndentPattern': '(?:^\\s*\\})'
