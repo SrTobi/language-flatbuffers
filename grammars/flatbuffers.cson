@@ -104,6 +104,25 @@
         }
       ]
     }
+  'metadata':
+    {
+      'begin':  '\\('
+      'end':    '\\)'
+      'patterns': [
+        {
+          'include': '#comments'
+        },
+        {
+          'include': '#name'
+        },
+        {
+          'include': '#string'
+        },
+        {
+          'include': '#numeric'
+        }
+      ]
+    }
   'namespace-decl':
     {
       'begin':  '\\b(namespace)\\b'
@@ -151,6 +170,9 @@
           'include': '#typename'
         },
         {
+          'include': '#metadata'
+        },
+        {
           'begin':  '{'
           'end':    '}'
           'patterns': [
@@ -180,6 +202,9 @@
         },
         {
           'include': '#typename'
+        },
+        {
+          'include': '#metadata'
         },
         {
           'begin':  '{'
