@@ -20,6 +20,9 @@
   },
   {
     'include' : '#union-decl'
+  },
+  {
+    'include' : '#struct-decl'
   }
 ]
 'repository':
@@ -111,6 +114,36 @@
         },
         {
           'include' : '#block-comment'
+        }
+      ]
+    }
+  'struct_field_end':
+    {
+      'begin':  '\\b(:)\\b'
+      'end':    ';'
+      'patterns': [
+        {
+          'include': '#comments'
+        },
+        {
+          'include': '#typename'
+        },
+        {
+          'match':  '[\\d=]+'
+          'name':   'invalid.illegal.flatbuffers'
+        },
+        {
+          'begin': '"'
+          'end': '"'
+          'name':   'invalid.illegal.flatbuffers'
+          'patterns': [
+              {
+                'match': '(\\\\\\\\)|\\\\"'
+              }
+            ]
+        },
+        {
+          'include': '#metadata'
         }
       ]
     }
@@ -225,6 +258,40 @@
               },
               {
                 'include': '#typename'
+              }
+          ]
+        }
+      ]
+    }
+  'struct-decl':
+    {
+      'begin':  '\\b(struct)\\b'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.control.flatbuffers'
+      'end':    '(?<=})'
+      'patterns': [
+        {
+          'include': '#comments'
+        },
+        {
+          'include': '#typename'
+        },
+        {
+          'include': '#metadata'
+        },
+        {
+          'begin':  '{'
+          'end':    '}'
+          'patterns': [
+              {
+                'include': '#comments'
+              },
+              {
+                'include': '#name'
+              }
+              {
+                'include': '#struct_field_end'
               }
           ]
         }
