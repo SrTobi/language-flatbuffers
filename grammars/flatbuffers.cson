@@ -167,7 +167,7 @@
     }
   'numeric':
     {
-      'match':  '\\b\\d+\\b'
+      'match':  '(-)?\\d+(\\.\\d+)?'
       'name':   'constant.numeric.flatbuffers'
     }
   'comments':
