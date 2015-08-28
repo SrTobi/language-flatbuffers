@@ -4,13 +4,7 @@
 'name': 'Flatbuffers schema'
 'patterns': [
   {
-    'include' : '#line-comment'
-  },
-  {
-    'include' : '#block-comment'
-  },
-  {
-    'include' : '#base-keywords'
+    'include' : '#comments'
   },
   {
     'include' : '#string'
@@ -23,6 +17,9 @@
   },
   {
     'include' : '#enum-decl'
+  },
+  {
+    'include' : '#union-decl'
   }
 ]
 'repository':
@@ -46,32 +43,27 @@
       'end': '(?<!/)\\*/'
       'name': 'comment.block.flatbuffers'
     }
-  'base-keywords':
-    {
-      'match': '\\b(namespace|attribute|enum|struct|table|root_type|union)\\b'
-      'name':  'keyword.control.flatbuffers'
-    }
   'escape-chars':
     {
       'match': '\\\\(?:[\'"\\?\\\\abfnrtv]|[0-7]{1,3}|x[\\da-fA-F]+|u[\\da-fA-F]{4}|U[\\da-fA-F]{8})'
-      'name':  'constant.character.escape.cpp'
+      'name':  'constant.character.escape.flatbuffers'
     }
   'invalid-escape-chars':
     {
       'match': '\\\\(?:[^\'"\\?\\\\abfnrtvxuU0-7]|x[^\\da-fA-F]|u[\\da-fA-F]{0,3}[^\\da-fA-F]|U[\\da-fA-F]{0,7}[^\\da-fA-F])'
-      'name':  'invalid.illegal.unknown-escape.cpp'
+      'name':  'invalid.illegal.unknown-escape.flatbuffers'
     }
   'string':
     {
       'begin': '"'
       'beginCaptures':
         '0':
-          'name':'punctuation.definition.string.begin.cpp'
+          'name':'punctuation.definition.string.begin.flatbuffers'
       'end': '"'
       'endCaptures':
         '0':
-          'name':'punctuation.definition.string.end.cpp'
-      'name': 'string.quoted.double.cpp'
+          'name':'punctuation.definition.string.end.flatbuffers'
+      'name': 'string.quoted.double.flatbuffers'
       'patterns': [
           {
             'include': '#escape-chars'
@@ -81,7 +73,27 @@
           }
         ]
     }
-  'only-comments':
+  'typename':
+    {
+      'match':  '\\b(?!(enum|namespace|union|struct|table|include|bool|byte|ubyte|short|ushort|int|uint|float|long|ulong|double|string))([_a-zA-Z]\\w*)\\b'
+      'name':   'entity.name.type.flatbuffers'
+    }
+  'name':
+    {
+      'match':  '\\b(?!(enum|namespace|union|struct|table|include|bool|byte|ubyte|short|ushort|int|uint|float|long|ulong|double|string))([_a-zA-Z]\\w*)\\b'
+      'name':   'entity.name.tag.flatbuffers'
+    }
+  'packname':
+    {
+      'match':  '\\b(?!(enum|namespace|union|struct|table|include|bool|byte|ubyte|short|ushort|int|uint|float|long|ulong|double|string))([_a-zA-Z]\\w*)\\b'
+      'name':   'entity.name.section.flatbuffers'
+    }
+  'numeric':
+    {
+      'match':  '\\b\\d+\\b'
+      'name':   'constant.numeric.flatbuffers'
+    }
+  'comments':
     {
       'patterns': [
         {
@@ -89,79 +101,97 @@
         },
         {
           'include' : '#block-comment'
-        },
-        {
-          'match':  '\\S'
-          'name':   'invalid.illegal.flatbuffers'
         }
       ]
     }
   'namespace-decl':
     {
-      'begin':  '(?<=namespace)'
-      'end':    '(?=;)'
+      'begin':  '\\b(namespace)\\b'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.control.flatbuffers'
+      'end':    ';'
       'patterns': [
         {
-          'match':  '\\s+([_a-zA-Z]\\w*)(\\s*\\.\\s*([_a-zA-Z]\\w*))*\\s*'
-          'captures':
-            '0':
-              'patterns': [
-                {
-                  'match':  '[_a-zA-Z]\\w*'
-                  'name':   'entity.name.type.flatbuffers'
-                }
-              ]
+          'include': '#comments'
         },
         {
-          'match':  '[^;]+'
-          'name':   'invalid.illegal.flatbuffers'
+          'include': '#packname'
         }
       ]
     }
   'attribute-decl':
     {
-      'begin':  '(?<=attribute)'
-      'end':    '(?=;)'
+      'begin':  '\\b(attribute)\\b'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.control.flatbuffers'
+      'end':    ';'
       'patterns': [
         {
-          'include': '#string'
+          'include': '#comments'
         },
         {
-          'match':  '[^";\\s]+'
-          'name':   'invalid.illegal.flatbuffers'
+          'include': '#string'
         }
       ]
     }
   'enum-decl':
     {
-      'begin':  '(?<=enum|union)([^_a-zA-Z:{]*)([_a-zA-Z]\\w*)?([^_a-zA-Z:{]*)(:)?([^_a-zA-Z:{]*)([_a-zA-Z]\\w*)?([^{]*){'
+      'begin':  '\\b(enum)\\b'
       'beginCaptures':
         '1':
-          'patterns': [{ 'include':  '#only-comments' }]
-        '2':
-          'name': 'entity.name.type.flatbuffers'
-        '3':
-          'patterns': [{ 'include':  '#only-comments' }]
-        '5':
-          'patterns': [{ 'include':  '#only-comments' }]
-        '6':
-          'name': 'entity.name.type.flatbuffers'
-        '7':
-          'patterns': [{ 'include':  '#only-comments' }]
-
-      'end':    '(?=})'
+          'name': 'keyword.control.flatbuffers'
+      'end':    '(?<=})'
       'patterns': [
         {
-          'match':  '[_a-zA-Z]\\w*'
-          'name':   'entity.name.type.flatbuffers'
+          'include': '#comments'
         },
         {
-          'match':  '\\d+(?=\\W)'
-          'name':   'constant.numeric.flatbuffers'
+          'include': '#typename'
         },
         {
-          'match':  '[^},=\\s]+'
-          'name':   'invalid.illegal.flatbuffers'
+          'begin':  '{'
+          'end':    '}'
+          'patterns': [
+              {
+                'include': '#comments'
+              },
+              {
+                'include': '#name'
+              },
+              {
+                'include':  '#numeric'
+              }
+          ]
+        }
+      ]
+    }
+  'union-decl':
+    {
+      'begin':  '\\b(union)\\b'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.control.flatbuffers'
+      'end':    '(?<=})'
+      'patterns': [
+        {
+          'include': '#comments'
+        },
+        {
+          'include': '#typename'
+        },
+        {
+          'begin':  '{'
+          'end':    '}'
+          'patterns': [
+              {
+                'include': '#comments'
+              },
+              {
+                'include': '#typename'
+              }
+          ]
         }
       ]
     }
