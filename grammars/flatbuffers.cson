@@ -26,6 +26,9 @@
   },
   {
     'include' : '#table-decl'
+  },
+  {
+    'include' : '#root_type-decl'
   }
 ]
 'repository':
@@ -361,6 +364,22 @@
                 'include': '#table_field_end'
               }
           ]
+        }
+      ]
+    }
+  'root_type-decl':
+    {
+      'begin':  '\\b(root_type)\\b'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.control.flatbuffers'
+      'end':    ';'
+      'patterns': [
+        {
+          'include': '#comments'
+        },
+        {
+          'include': '#typename'
         }
       ]
     }
