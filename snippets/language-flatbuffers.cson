@@ -17,3 +17,15 @@
   'Attribute':
     prefix: 'attribute'
     body:  'attribute "$1";'
+  'FileIdentifier':
+    prefix: 'file_identifier'
+    body:  'file_identifier "$1";'
+  'FileExtension':
+    prefix: 'file_extension'
+    body:  'file_extension "$1";'
+  'Namespace':
+    prefix: 'namespace'
+    body:  'namespace $1;'
+  'RootType':
+    prefix: 'root_type'
+    body:  'root_type $1;'
