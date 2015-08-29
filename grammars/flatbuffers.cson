@@ -1,7 +1,7 @@
 'fileTypes': [
   'fbs'
 ]
-'name': 'Flatbuffers schema'
+'name': 'Flatbuffers Schema'
 'patterns': [
   {
     'include' : '#comments'
@@ -94,7 +94,7 @@
       'patterns': [
         {
           'match':  '\\b(true|false)\\b'
-          'name':   'constant.language'
+          'name':   'constant.language.flatbuffers'
         },
         {
           'include': '#string'
