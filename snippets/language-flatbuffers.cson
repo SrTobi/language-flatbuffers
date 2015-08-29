@@ -11,3 +11,9 @@
   'Struct':
     prefix: 'struct'
     body:  'struct $1 {\n\t$2\n}'
+  'Include':
+    prefix: 'include'
+    body:  'include "$1.${2:fbs}";'
+  'Attribute':
+    prefix: 'attribute'
+    body:  'attribute "$1";'
