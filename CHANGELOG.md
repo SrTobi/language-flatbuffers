@@ -1,2 +1,2 @@
 ## 0.1.0 - First Release
-* Added grammar for flatbuffers files.
+* Added grammar for flatbuffers schema files.

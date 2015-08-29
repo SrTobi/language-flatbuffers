@@ -1,11 +1,12 @@
 {
   "name": "language-flatbuffers",
   "version": "0.1.0",
-  "description": "Syntax highlighting for flatbuffers definition files.",
+  "description": "Syntax highlighting for flatbuffers schema files.",
   "keywords": [
     "grammar",
     "language",
-    "flatbuffers"
+    "flatbuffers",
+    "schema"
   ],
   "engines": {
     "atom": "*",
