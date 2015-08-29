@@ -8,3 +8,6 @@
   'Table':
     prefix: 'table'
     body:  'table $1 {\n\t$2\n}'
+  'Struct':
+    prefix: 'struct'
+    body:  'struct $1 {\n\t$2\n}'
