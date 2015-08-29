@@ -1,7 +1,7 @@
 '.source.flatbuffers':
   'Enum':
     prefix: 'enum'
-    body:  'enum $1 : ${2:byte}\n{\n\t$3\n}'
+    body:  'enum $1 : ${2:byte} {\n\t$3\n}'
   'Union':
     prefix: 'union'
-    body:  'union $1\n{\n\t$2\n}'
+    body:  'union $1 {\n\t$2\n}'
