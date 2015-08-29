@@ -4,7 +4,7 @@ Adds syntax highlighting for flatbuffers schema files.
 See [this](https://google.github.io/flatbuffers/md__schemas.html) example from the flatbuffers documentation:
 
 
-![Example schema from the flatbuffers documentation.](https://raw.githubusercontent.com/SrTobi/language-flatbuffers/master/preview/example.png)
+![Example schema from the flatbuffers documentation.](https://raw.githubusercontent.com/SrTobi/language-flatbuffers/stable/preview/example.png)
 
 ## Issues
 
