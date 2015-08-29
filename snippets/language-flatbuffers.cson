@@ -5,3 +5,6 @@
   'Union':
     prefix: 'union'
     body:  'union $1 {\n\t$2\n}'
+  'Table':
+    prefix: 'table'
+    body:  'table $1 {\n\t$2\n}'
