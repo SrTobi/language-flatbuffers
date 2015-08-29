@@ -1,6 +1,6 @@
 {
   "name": "language-flatbuffers",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Syntax highlighting for flatbuffers schema files.",
   "keywords": [
     "grammar",
@@ -15,7 +15,7 @@
   "homepage": "https://github.com/SrTobi/language-flatbuffers",
   "repository": {
     "type": "git",
-    "url":  "https://github.com/SrTobi/language-flatbuffers.git"
+    "url": "https://github.com/SrTobi/language-flatbuffers.git"
   },
   "license": "MIT",
   "bugs": {
