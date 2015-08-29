@@ -259,6 +259,10 @@
           'include': '#comments'
         },
         {
+          'match':  '\\b(id|deprecated|required|original_order|force_align|bit_flags|nested_flatbuffer|key)\\b'
+          'name':   'keyword.control.flatbuffers'
+        },
+        {
           'include': '#name'
         },
         {
