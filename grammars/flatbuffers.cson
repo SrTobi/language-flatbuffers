@@ -194,7 +194,7 @@
     }
   'struct_field_end':
     {
-      'begin':  '\\b(:)\\b'
+      'begin':  '\\b(:)'
       'end':    ';'
       'patterns': [
         {
@@ -224,7 +224,7 @@
     }
   'table_field_end':
     {
-      'begin':  '\\b(:)\\b'
+      'begin':  '\\b(:)'
       'end':    ';'
       'patterns': [
         {
