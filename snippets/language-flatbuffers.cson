@@ -1,0 +1,4 @@
+'.source.flatbuffers':
+  'Enum':
+    prefix: 'enum'
+    body:  'enum $1 : ${2:byte}\n{\n\t$3\n}'
